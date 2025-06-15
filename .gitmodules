@@ -1,3 +1,6 @@
 [submodule "cccl"]
 	path = cccl
 	url = https://github.com/NVIDIA/cccl.git
+[submodule "include/cccl"]
+	path = include/cccl
+	url = https://github.com/NVIDIA/cccl.git
