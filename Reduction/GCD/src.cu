@@ -26,7 +26,7 @@ void getResult(const length_t N, input_t* a, result* curr_result, output_t host_
 
     // Computing Reduction and saving result
     start_time = rtClock();
-    computeReduction (N, d_a, d_sum, 0LL);
+    computeReduction (N, d_a, d_sum, (output_t)a[0]);
     cudaMemcpy(&sum, d_sum, sizeof(output_t), cudaMemcpyDeviceToHost);
     end_time = rtClock();
     
@@ -44,7 +44,7 @@ void getResult(const length_t N, input_t* a, result* curr_result, output_t host_
 
     for(length_t RUN = 1; RUN < NUM_RUNS; RUN++){
         start_time = rtClock();
-        computeReduction (N, d_a, d_sum, 0LL);
+        computeReduction (N, d_a, d_sum, (output_t)a[0]);
         cudaMemcpy(&curr_sum, d_sum, sizeof(output_t), cudaMemcpyDeviceToHost);
         end_time = rtClock();
 
@@ -70,8 +70,8 @@ void getResult(const length_t N, input_t* a, result* curr_result, output_t host_
 
 // Host function
 output_t host_reduce(const length_t N, input_t* a){
-    output_t host_sum = 0;
-    for(length_t i = 0; i < N; i++) host_sum += a[i];
+    output_t host_sum = a[0];
+    for(length_t i = 1; i < N; i++) host_sum = GCD(host_sum, (output_t)a[i]);
     return host_sum;
 }
 
@@ -134,6 +134,9 @@ int main(const int argc, char* argv[]){
             free(a);
             exit(EXIT_FAILURE);
         }
+        // Ensuring that a[i] > 0 for inputs for gcd calculation
+        if(a[i] < 0) a[i] = -a[i];
+        else if(a[i] == 0) a[i] = 10; // some random positive number
     }
 
     // Closing the input file

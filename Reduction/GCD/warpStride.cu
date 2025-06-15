@@ -1,0 +1,151 @@
+#include "project_defs.cuh"
+
+// Useful constants
+constexpr int min_work_per_thread  = 16;
+constexpr int block_size_256_power = 8;
+constexpr int block_size_256       = (1 << block_size_256_power);
+constexpr int block_size_512_power = 9;
+constexpr int block_size_512       = (1 << block_size_512_power);
+constexpr int num_blocks_256_power = 8;
+constexpr int num_blocks_256       = (1 << num_blocks_256_power);
+constexpr int warp_size_power      = 5;
+constexpr int warp_size            = (1 << warp_size_power);
+
+// Kernel for small input sizes
+template <const unsigned int block_size_power>
+__global__ void treeReductionKernelForSmallerSizes(const length_t N, const input_t* __restrict__ a, output_t* __restrict__ total_gcd)
+{
+    length_t iter = threadIdx.x + (blockIdx.x << block_size_power);
+    const length_t grid_stride = gridDim.x << block_size_power;
+
+    output_t partial_gcd = a[0]; // assuming at least one element is present in array
+    // Grid-stride loop
+    while(__builtin_expect(iter < N, 1)){    // Branch prediction: Always take
+        partial_gcd = GCD(partial_gcd, static_cast<output_t>(a[iter]));
+        iter += grid_stride;
+    }
+
+    // Tree reduction
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0xFFFFFFFF, partial_gcd, 16));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000FFFF, partial_gcd,  8));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x000000FF, partial_gcd,  4));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000000F, partial_gcd,  2));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x00000003, partial_gcd,  1));
+
+    // Writing to shared memory
+    extern __shared__ output_t warp_partial_gcd_values[];
+    const uint8_t lane_id = (threadIdx.x & 31);
+    const uint8_t warp_id = (threadIdx.x >> 5);
+    if (lane_id == 0) warp_partial_gcd_values[warp_id] = partial_gcd;
+    __syncthreads();
+
+    // Reducing values in shared memory
+    if (warp_id == 0){
+        partial_gcd = warp_partial_gcd_values[lane_id];
+        if constexpr (block_size_power >= 10)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0xFFFFFFFF, partial_gcd, 16));
+        if constexpr (block_size_power >=  9)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000FFFF, partial_gcd, 8));
+        if constexpr (block_size_power >=  8)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x000000FF, partial_gcd, 4));
+        if constexpr (block_size_power >=  7)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000000F, partial_gcd, 2));
+        if constexpr (block_size_power >=  6)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x00000003, partial_gcd, 1));
+        if (lane_id == 0)
+            atomicGCD(total_gcd, partial_gcd);
+    }
+}
+
+// Kernel for reduction
+template <const int block_size_power>
+__global__ void treeReductionWarpStrideKernel(
+    const length_t N,
+    const input_t* __restrict__ a,
+    output_t* __restrict__ total_gcd)
+{
+    // Thread algebra
+    const unsigned int global_thread_id    = ((blockIdx.x << block_size_power) + threadIdx.x);
+    const unsigned int global_warp_id      = (global_thread_id >> warp_size_power);
+    const length_t num_chunks              = (N >> warp_size_power);
+    const unsigned int num_warps           = (gridDim.x << (block_size_power - warp_size_power));
+    const length_t chunks_per_warp         = (num_chunks / num_warps);
+    const length_t work_per_warp           = chunks_per_warp << warp_size_power;
+    length_t iter                          = (work_per_warp * global_warp_id) + (threadIdx.x & 31);
+    const length_t end                     = iter + work_per_warp;
+    constexpr unsigned int warp_stride     = warp_size;
+
+    // Warp-stride loop
+    output_t partial_gcd = a[iter];               // Taking INT_MAX as infinity
+    iter += warp_stride;
+    while (__builtin_expect(iter < end, 1)) {
+        partial_gcd = GCD(partial_gcd, static_cast<output_t> (a[iter]));
+        iter += warp_stride;
+    }
+    // Remaining work-items
+    iter = work_per_warp * num_warps + global_thread_id;
+    if (iter < N) partial_gcd = GCD(partial_gcd, static_cast<output_t> (a[iter]));
+
+    // Tree reduction
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0xFFFFFFFF, partial_gcd, 16));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000FFFF, partial_gcd,  8));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x000000FF, partial_gcd,  4));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000000F, partial_gcd,  2));
+    partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x00000003, partial_gcd,  1));
+
+    // Writing to shared memory
+    extern __shared__ output_t warp_partial_gcd_values[];
+    const uint8_t lane_id = (threadIdx.x & 31);
+    const uint8_t warp_id = (threadIdx.x >> 5);
+    if (lane_id == 0) warp_partial_gcd_values[warp_id] = partial_gcd;
+    __syncthreads();
+
+    // Reducing values in shared memory
+    if (warp_id == 0){
+        partial_gcd = warp_partial_gcd_values[lane_id];
+        if constexpr (block_size_power >= 10)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0xFFFFFFFF, partial_gcd, 16));
+        if constexpr (block_size_power >=  9)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000FFFF, partial_gcd, 8));
+        if constexpr (block_size_power >=  8)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x000000FF, partial_gcd, 4));
+        if constexpr (block_size_power >=  7)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x0000000F, partial_gcd, 2));
+        if constexpr (block_size_power >=  6)
+            partial_gcd = GCD(partial_gcd, __shfl_down_sync(0x00000003, partial_gcd, 1));
+        if (lane_id == 0)
+            atomicGCD(total_gcd, partial_gcd);
+    }
+}
+
+// Kernel invocation
+void computeReduction(const length_t N, const input_t* d_a, output_t* d_gcd, output_t init)
+{
+    //cudaMemset(d_xor_val, init, sizeof(output_t));
+    cudaMemcpy(d_gcd, &init, sizeof(output_t), cudaMemcpyHostToDevice);
+
+    // Kernel invocation
+    if (N < block_size_256 * min_work_per_thread)
+    {
+        treeReductionKernelForSmallerSizes <block_size_256_power>
+            <<<1, block_size_256, warp_size * sizeof(output_t)>>>(N, d_a, d_gcd);
+    }
+    else if (N < num_blocks_256 * block_size_256 * min_work_per_thread)
+    {
+        treeReductionWarpStrideKernel <block_size_256_power>
+            <<< (N >> block_size_256_power) / min_work_per_thread, block_size_256, warp_size * sizeof(output_t) >>>(N, d_a, d_gcd);
+    }
+    else if (N < num_blocks_256 * block_size_512 * min_work_per_thread)
+    {
+        treeReductionWarpStrideKernel <block_size_256_power>
+            <<<num_blocks_256, block_size_256, warp_size * sizeof(output_t)>>>(N, d_a, d_gcd);
+    }
+    else
+    {
+        treeReductionWarpStrideKernel <block_size_512_power>
+            <<<num_blocks_256, block_size_512, warp_size * sizeof(output_t)>>>(N, d_a, d_gcd);
+    }
+
+    cudaDeviceSynchronize();
+    return;
+}

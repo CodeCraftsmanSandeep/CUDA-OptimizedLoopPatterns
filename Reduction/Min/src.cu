@@ -26,7 +26,7 @@ void getResult(const length_t N, input_t* a, result* curr_result, output_t host_
 
     // Computing Reduction and saving result
     start_time = rtClock();
-    computeReduction (N, d_a, d_sum, 0LL);
+    computeReduction (N, d_a, d_sum, INT_MAX);
     cudaMemcpy(&sum, d_sum, sizeof(output_t), cudaMemcpyDeviceToHost);
     end_time = rtClock();
     
@@ -44,7 +44,7 @@ void getResult(const length_t N, input_t* a, result* curr_result, output_t host_
 
     for(length_t RUN = 1; RUN < NUM_RUNS; RUN++){
         start_time = rtClock();
-        computeReduction (N, d_a, d_sum, 0LL);
+        computeReduction (N, d_a, d_sum, INT_MAX);
         cudaMemcpy(&curr_sum, d_sum, sizeof(output_t), cudaMemcpyDeviceToHost);
         end_time = rtClock();
 
@@ -70,8 +70,8 @@ void getResult(const length_t N, input_t* a, result* curr_result, output_t host_
 
 // Host function
 output_t host_reduce(const length_t N, input_t* a){
-    output_t host_sum = 0;
-    for(length_t i = 0; i < N; i++) host_sum += a[i];
+    output_t host_sum = INT_MAX;
+    for(length_t i = 0; i < N; i++) host_sum = min(host_sum, (output_t)a[i]);
     return host_sum;
 }
 

@@ -148,3 +148,75 @@ inline __device__ long long int atomIicXor(long long int* address, long long int
     return old;
 }
 
+inline __host__ __device__
+int GCD(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// __host__ __device__ GCD function from previous example
+inline __host__ __device__
+long long int GCD(long long int a, long long int b) {
+    // Handle cases where one or both numbers are zero
+    // gcd(0, x) = |x|
+    // gcd(x, 0) = |x|
+    // gcd(0, 0) = 0 (conventionally)
+    if (a == 0) return (b < 0) ? -b : b;
+    if (b == 0) return (a < 0) ? -a : a;
+
+    // Use Euclidean algorithm
+    a = (a < 0) ? -a : a; // Take absolute values for GCD calculation
+    b = (b < 0) ? -b : b;
+
+    while (b != 0) {
+        long long int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Custom atomicGCD for datatype: long long int
+// Atomically updates *address with gcd(*address, val)
+// Returns the old value that was in *address before the update.
+inline __device__ long long int atomicGCD(long long int* address, long long int val) {
+    // Cast to unsigned long long int for atomicCAS, as it operates on raw bits.
+    // This is safe as long as the bit patterns are compatible (which they are for same-sized integers).
+    unsigned long long int* address_as_ull = (unsigned long long int*)address;
+    unsigned long long int old_ull_value;
+    unsigned long long int assumed_ull_value;
+    long long int new_gcd_value_ll; // To store the computed GCD before casting to ULL
+
+    // Volatile is used to ensure the compiler doesn't optimize away reads within the loop,
+    // though atomicCAS typically provides sufficient memory barriers.
+    // However, it's good practice for values being actively spun on.
+    volatile unsigned long long int current_ull_in_memory = *address_as_ull;
+
+    do {
+        assumed_ull_value = current_ull_in_memory; // Assume this is the current value
+
+        // Convert assumed_ull_value back to long long int to perform GCD arithmetic
+        long long int assumed_ll_value = (long long int)assumed_ull_value;
+
+        // Calculate the new GCD value
+        new_gcd_value_ll = GCD(assumed_ll_value, val);
+
+        // Attempt to atomically compare and swap
+        // If 'current_ull_in_memory' is still 'assumed_ull_value', then update it to 'new_gcd_value_ll'
+        // Otherwise, 'current_ull_in_memory' is updated with the actual value found in *address_as_ull
+        old_ull_value = atomicCAS(address_as_ull, assumed_ull_value, (unsigned long long int)new_gcd_value_ll);
+
+        // If 'old_ull_value' is different from 'assumed_ull_value', it means another thread
+        // modified the *address before our CAS. We need to retry with the new actual value.
+        current_ull_in_memory = old_ull_value;
+
+    } while (assumed_ull_value != old_ull_value); // Loop until CAS succeeds (old_ull_value matches assumed_ull_value)
+
+    // Return the value that was in *address before this atomic operation began.
+    // This is the 'old_ull_value' from the successful CAS.
+    return (long long int)old_ull_value;
+}

@@ -1,0 +1,12 @@
+▶ Running GCD experiments...
+Processing input/int_10000000.txt
+Processing input/int_1130000000.txt
+Processing input/int_1530000000.txt
+Processing input/int_170000000.txt
+Processing input/int_1950000000.txt
+Processing input/int_2110000000.txt
+Processing input/int_3771757.txt
+Processing input/int_490000000.txt
+Processing input/int_730000000.txt
+Processing input/int_90000000.txt
+✅ All results written to results/GCD/

@@ -1,0 +1,2 @@
+File-name,N,Result,Num-of-runs,Mean-time(ms),Median-time(ms),Standard-deviation(ms)
+input/int_10000000.txt,10000000,1073741824,11,0.0907074,0.0870228,0.0110804

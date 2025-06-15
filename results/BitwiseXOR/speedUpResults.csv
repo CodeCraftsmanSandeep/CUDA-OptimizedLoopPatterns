@@ -1,0 +1,11 @@
+File-name,Speedup_BlockOverGrid,Speedup_WarpOverGrid
+input/int_3771757.txt,0.9644,0.9701
+input/int_10000000.txt,1.1424,1.1422
+input/int_90000000.txt,1.2037,1.2008
+input/int_170000000.txt,1.2948,1.2932
+input/int_490000000.txt,1.4192,1.4204
+input/int_730000000.txt,1.4629,1.4723
+input/int_1130000000.txt,1.4505,1.5153
+input/int_1530000000.txt,1.4129,1.5368
+input/int_1950000000.txt,1.3821,1.5468
+input/int_2110000000.txt,1.3758,1.5513

@@ -94,7 +94,7 @@ int main(const int argc, char* argv[]){
     }
 
     // Output header
-    OUTPUT_FILE << "File-name,N,Sum,Num-of-runs,Mean-time(ms),Median-time(ms),Standard-deviation(ms)" << std::endl; 
+    OUTPUT_FILE << "File-name,N,Result,Num-of-runs,Mean-time(ms),Median-time(ms),Standard-deviation(ms)" << std::endl; 
 
     // Getting input file name from command line arguments
     char* input_file_name = argv[1];
