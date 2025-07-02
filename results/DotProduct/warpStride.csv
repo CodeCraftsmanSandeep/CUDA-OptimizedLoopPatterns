@@ -1,4 +1,4 @@
-File-name,N,Sum,Num-of-runs,Mean-time(ms),Median-time(ms),Standard-deviation(ms)
+N,Result,Mean-time(ms),Median-time(ms),Standard-deviation(ms)
 1000000000,1189420633666256,15.485178,15.470982,0.064906
 100000000,118609707699422,1.399994,1.389027,0.036162
 10000000,11743477084713,0.175541,0.165939,0.034315
