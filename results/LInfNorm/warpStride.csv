@@ -1,4 +1,4 @@
-N,Result,Num-of-runs,Mean-time(ms),Median-time(ms),Standard-deviation(ms)
+N,Result,Mean-time(ms),Median-time(ms),Standard-deviation(ms)
 100,16358,0.017903,0.015020,0.009828
 125,16390,0.008800,0.008106,0.002765
 2000000,17851,0.039252,0.037193,0.006216
