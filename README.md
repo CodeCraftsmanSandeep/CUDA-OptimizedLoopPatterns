@@ -88,6 +88,28 @@ After compilation, you can run the executable as follows:
 ./ourImplementations/efficientStridePatterns/blockStrideTreeReduction.out < input > output
 ```
 
+- Standard sizes which we considered for benchmarking:
+    - For one array only: (all are X 1e7) array size is
+        - 0.37
+        - 1.00
+        - 9.00
+        - 17.00
+        - 49.00
+        - 73.00
+        - 113.00
+        - 153.00
+        - 195.00
+        - 211.00
+    - For two arrays: (all array sizes are X 1e7) each array size is
+        - 0.20
+        - 1.00
+        - 10.00
+        - 40.00
+        - 60.00
+        - 80.00
+        - 100.00
+        - 125.00
+
 ---
 
 ## Benchmark Results

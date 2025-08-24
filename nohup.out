@@ -1,12 +1,275 @@
-▶ Running GCD experiments...
-Processing input/int_10000000.txt
-Processing input/int_1130000000.txt
-Processing input/int_1530000000.txt
-Processing input/int_170000000.txt
-Processing input/int_1950000000.txt
-Processing input/int_2110000000.txt
-Processing input/int_3771757.txt
-Processing input/int_490000000.txt
-Processing input/int_730000000.txt
-Processing input/int_90000000.txt
-✅ All results written to results/GCD/
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/DotProduct/blockStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/DotProduct/CUBDotProduct.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/DotProduct/gridStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/DotProduct/thrustDotProduct.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/DotProduct/warpStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/L1Norm/blockStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/L1Norm/CUBL1Norm.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/L1Norm/gridStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/L1Norm/thrustL1Norm.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Results saved to results/L1Norm/warpStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/LInfNorm/blockStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/LInfNorm/CUBLInfNorm.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/LInfNorm/gridStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/LInfNorm/thrustLInfNorm.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/LInfNorm/warpStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/L2Norm/blockStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/L2Norm/CUBL2Norm.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/L2Norm/gridStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/L2Norm/thrustL2Norm.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to results/L2Norm/warpStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to DotProduct/results/blockStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to DotProduct/results/CUBDotProduct.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to DotProduct/results/gridStride.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to DotProduct/results/thrustDotProduct.csv
+Processing pair: int1_1000000000.txt & int2_1000000000.txt
+Processing pair: int1_100000000.txt & int2_100000000.txt
+Processing pair: int1_10000000.txt & int2_10000000.txt
+Processing pair: int1_100.txt & int2_100.txt
+Processing pair: int1_1250000000.txt & int2_1250000000.txt
+Processing pair: int1_125.txt & int2_125.txt
+Processing pair: int1_2000000.txt & int2_2000000.txt
+Processing pair: int1_400000000.txt & int2_400000000.txt
+Processing pair: int1_600000000.txt & int2_600000000.txt
+Processing pair: int1_800000000.txt & int2_800000000.txt
+✅ Sorted results saved to DotProduct/results/warpStride.csv
