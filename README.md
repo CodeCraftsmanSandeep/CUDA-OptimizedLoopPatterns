@@ -147,7 +147,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 For questions, collaborations, or further information, please contact:
 - **Name:** Chekkala Sandeep Reddy
-- **Email:** sandeep.chekkala.wh@gmail.com
 - **GitHub:** https://github.com/CodeCraftsmanSandeep
 
 ---
